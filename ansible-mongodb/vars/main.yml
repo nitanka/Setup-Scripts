@@ -1,0 +1,12 @@
+---
+VERSION_3_4_KEY: 0C49F3730359A14518585931BC711F9BA15703C6
+VERSION_3_4_KEY_SERVER: keyserver.ubuntu.com
+VERSION_3_4_URL: http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.4
+
+VERSION_3_2_KEY: EA312927
+VERSION_3_2_URL: http://repo.mongodb.org/apt/ubuntu precise/mongodb-org/3.2
+VERSION_3_2_KEY_SERVER: keyserver.ubuntu.com
+
+VERSION_3_0_KEY: 7F0CEB10
+VERSION_3_0_KEY_SERVER: keyserver.ubuntu.com
+VERSION_3_0_URL: http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.0
