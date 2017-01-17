@@ -1,0 +1,5 @@
+---
+# Configure MySQL.
+- include: setup-Debian.yml
+- include: configure.yml
+- include: secure-installation.yml
