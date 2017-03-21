@@ -1,0 +1,6 @@
+---
+- name: adding the apt-key for mongo
+  apt_key:
+    keyserver: "{{ mongodb_apt_keyserver }}"
+    id: "{{ mongodb_apt_key_id }}"
+
