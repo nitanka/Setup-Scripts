@@ -1,0 +1,12 @@
+---
+HADOOP_VERSION: "2.7.3"
+HADOOP_URL: http://redrockdigimark.com/apachemirror/hadoop/common/hadoop-{{ HADOOP_VERSION}}/hadoop-{{ HADOOP_VERSION }}.tar.gz 
+HADOOP_UI_PORT: 50070
+HADOOP_LISTEN_PORT: 9000
+HADOOP_HOME: /opt/hadoop
+HADOOP_DATA_DIR: /opt/hadoop
+REPLICATION: 1
+NAMENODE_DIR: /opt/hadoopStore/namenode
+DATANODE_DIR: /opt/hadoopStore/datanode
+HADOOP_TMP: /opt/hadoopStore/tmp
+HADOOP_CONF_LOC: "{{ HADOOP_HOME }}/etc/hadoop"

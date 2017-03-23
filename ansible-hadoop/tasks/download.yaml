@@ -1,0 +1,19 @@
+---
+#- name: download hadoop tarball
+#  command: wget "{{ HADOOP_URL }}" \-O \/tmp
+- name: download hadoop tarball
+  get_url:
+    url: "{{ HADOOP_URL }}"
+    dest: /tmp
+  register: download
+- name: debub
+  debug:
+    msg: "{{ download }}"
+- name: unarchiving the hadoop tarball
+  unarchive:
+    src: "/tmp/hadoop-{{ HADOOP_VERSION }}.tar.gz"
+    dest: /opt
+  when: download.changed == true
+
+- name: changing the name of the directory
+  command: mv /opt/hadoop-{{ HADOOP_VERSION }} /opt/hadoop

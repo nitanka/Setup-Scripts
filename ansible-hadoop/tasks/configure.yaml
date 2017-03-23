@@ -1,0 +1,38 @@
+--- 
+- name: creating Namenode directory
+  file:
+    path: "{{ NAMENODE_DIR }}"
+    recurse: true
+    state: directory
+
+- name: creating datanode directory
+  file:
+    path: "{{ DATANODE_DIR }}"
+    recurse: true
+    state: directory
+
+- name: creating hadoop temp directory
+  file:
+    path: "{{ HADOOP_TMP }}" 
+    recurse: true
+    state: directory
+
+- name: copying the hdfs-site.xml 
+  template:
+    src: hdfs-site.xml.j2
+    dest: "{{ HADOOP_CONF_LOC }}/hdfs-site.xml"
+    backup: true
+   
+
+- name: copying the core-site.xml
+  template:
+    src: core-site.xml.j2
+    dest: "{{ HADOOP_CONF_LOC }}/core-site.xml"
+    backup: true
+
+- name: setting up the slaves file
+  template: 
+    src: slaves.j2
+    dest: "{{ HADOOP_CONF_LOC }}/slaves"
+    backup: true
+  when: IS_MASTER == true 
