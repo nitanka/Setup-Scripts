@@ -1,0 +1,17 @@
+---
+- name: Download Spark
+  get_url: 
+    url: "{{ SPARK_URL }}"
+    dest: /tmp
+  register: download
+ 
+- name: Unarchiving spark 
+  unarchive: 
+    src: "/tmp/spark-{{ SPARK_VERSION }}-bin-hadoop2.7.tgz"
+    dest: /opt
+  when: download.changed == true
+
+- name: Renaming the spark directory
+  command: mv /opt/spark-{{ SPARK_VERSION }}-bin-hadoop2.7 /opt/spark
+ 
+
