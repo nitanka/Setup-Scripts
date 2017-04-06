@@ -1,10 +1,6 @@
 ---
 - name: create group
-  group:
-    name: spark
+  user:
+    name: "{{ SPARK_USER }}"
     state: present
 
-- name: create user
-  user:
-    name: spark
-    group: spark

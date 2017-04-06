@@ -1,4 +1,6 @@
 ---
+SPARK_USER: spark
+SPARK_GROUP: spark
 SPARK_VERSION: "2.1.0"
 SPARK_URL: "http://d3kbcqa49mib13.cloudfront.net/spark-{{ SPARK_VERSION }}-bin-hadoop2.7.tgz"
 SPARK_HOME: /opt/spark

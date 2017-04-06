@@ -3,20 +3,23 @@
   template:
     src: slaves.j2
     dest: "{{ SPARK_HOME }}/conf/slaves"
-    owner: spark
+    owner: "{{ SPARK_USER }}"
+    group: "{{ SPARK_GROUP }}"
 
 - name: copying spark-env.sh template
   template:
     src: spark-env.sh.j2 
     dest: "{{ SPARK_HOME }}/conf/spark-env.sh"
     mode: 0755
-    owner: spark
+    owner: "{{ SPARK_USER }}"
+    group: "{{ SPARK_GROUP }}"
 
 - name: creating the spark log directory
   file:
     state: directory
     dest: "{{ SPARK_LOG_DIR }}"
     mode: 0755
-    owner: spark 
+    owner: "{{ SPARK_USER }}"
+    group: "{{ SPARK_GROUP }}"
   when: ( SPARK_LOG_DIR is defined ) and ( SPARK_LOG_DIR|default(None) != None )
 

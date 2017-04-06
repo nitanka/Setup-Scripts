@@ -25,6 +25,8 @@
   file:
     path: "{{ SPARK_HOME }}"
     state: directory
-    owner: spark
+    owner: "{{ SPARK_USER }}"
+    group: "{{ SPARK_GROUP }}"
+    recurse: yes  
  
 
