@@ -1,0 +1,22 @@
+---
+- name: Stop spark master
+  command: "{{ SPARK_HOME }}/sbin/stop-master.sh"
+  when: inventory_hostname in groups['masters']
+  become_user: spark
+
+- name: Start spark master
+  command: "{{ SPARK_HOME }}/sbin/start-master.sh"
+  when: inventory_hostname in groups['masters']
+  become_user: spark
+
+- name: Stop spark slave
+  command: "{{ SPARK_HOME }}/sbin/stop-slave.sh"
+  when: inventory_hostname in groups['slaves']
+  become_user: spark
+
+- name: Start spark slave
+  command: "{{ SPARK_HOME }}/sbin/start-slave.sh spark://{{ SPARK_MASTER_HOST }}:{{ SPARK_MASTER_PORT }}"
+  when: inventory_hostname in groups['slaves'] 
+  become_user: spark
+
+

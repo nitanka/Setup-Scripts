@@ -1,0 +1,23 @@
+---
+- name: Download Spark
+  get_url: 
+    url: "{{ SPARK_URL }}"
+    dest: /tmp
+  register: download
+ 
+- name: Unarchiving spark 
+  unarchive: 
+    src: "/tmp/spark-{{ SPARK_VERSION }}-bin-hadoop2.7.tgz"
+    dest: /tmp
+#  when: download.changed == true
+
+- name: Renaming the spark directory
+  command: "mv /tmp/spark-{{ SPARK_VERSION }}-bin-hadoop2.7 {{ SPARK_HOME }}" 
+
+- name: Changing the owner to spark 
+  file:
+    path: "{{ SPARK_HOME }}"
+    state: directory
+    owner: spark
+ 
+

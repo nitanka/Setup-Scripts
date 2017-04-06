@@ -1,0 +1,29 @@
+---
+SPARK_VERSION: "2.1.0"
+SPARK_URL: "http://d3kbcqa49mib13.cloudfront.net/spark-{{ SPARK_VERSION }}-bin-hadoop2.7.tgz"
+SPARK_HOME: /opt/spark
+SPARK_MASTER_WEBUI_PORT: 8080
+SPARK_MASTER_HOST: '{{ groups["masters"] | list | join(" ") }}'
+SPARK_MASTER_PORT: 7077
+SPARK_MASTER_OPTS: 
+
+
+SPARK_WORKER_CORES: 2
+SPARK_WORKER_WEBUI_PORT: 8081
+SPARK_WORKER_MEMORY: 500M
+SPARK_WORKER_PORT: 
+SPARK_WORKER_INSTANCES: 2
+SPARK_WORKER_DIR:
+#SPARK_WORKER_OPTS, to set config properties only for the worker (e.g. "-Dx=y")
+#SPARK_DAEMON_MEMORY, to allocate to the master, worker and history server themselves (default: 1g).
+#SPARK_HISTORY_OPTS, to set config properties only for the history server (e.g. "-Dx=y")
+#SPARK_SHUFFLE_OPTS, to set config properties only for the external shuffle service (e.g. "-Dx=y")
+#SPARK_DAEMON_JAVA_OPTS, to set config properties for all daemons (e.g. "-Dx=y")
+SPARK_PUBLIC_DNS: "{{ ansible_domain }}"
+
+SPARK_PID_DIR: 
+# Generic options for the daemons used in the standalone deploy mode
+# - SPARK_CONF_DIR      Alternate conf dir. (Default: ${SPARK_HOME}/conf)
+SPARK_LOG_DIR:
+#Where log files are stored.  (Default: ${SPARK_HOME}/logs)
+
