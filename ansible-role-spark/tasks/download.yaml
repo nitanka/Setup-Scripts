@@ -9,10 +9,17 @@
   unarchive: 
     src: "/tmp/spark-{{ SPARK_VERSION }}-bin-hadoop2.7.tgz"
     dest: /tmp
-#  when: download.changed == true
+    remote_src: true
+
+- name: Checking if spark home is present
+  stat:
+    path: "{{ SPARK_HOME }}"
+  register: spark_home_status
 
 - name: Renaming the spark directory
-  command: "mv /tmp/spark-{{ SPARK_VERSION }}-bin-hadoop2.7 {{ SPARK_HOME }}" 
+  command: "mv /tmp/spark-{{ SPARK_VERSION }}-bin-hadoop2.7 {{ SPARK_HOME }}"
+  when: spark_home_status.stat.exists == false
+
 
 - name: Changing the owner to spark 
   file:
