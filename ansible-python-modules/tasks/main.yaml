@@ -1,0 +1,8 @@
+---
+- include: install-python.yaml
+  when: ansible_lsb['major_release'] == '14'
+
+- include: install-python-packages.yaml
+
+
+
