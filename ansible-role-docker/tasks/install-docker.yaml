@@ -1,11 +1,4 @@
 --- 
-#This playbook will perform the following
-# Create docker group
-# Install the docker dependencies
-# Add docker gpg key and keyserver
-# Install docker
-# Add a user to the docker group which will run the docker commands
-
 - name: create docker group
   group:
     name: docker
@@ -47,6 +40,4 @@
      name: "{{ DOCKER_USER }}"
      group: docker
      append: yes
-
-- name: start docker service
   notify: restart docker 
