@@ -7,7 +7,9 @@ SPARK_VERSION: "2.1.0"
 SPARK_URL: "http://d3kbcqa49mib13.cloudfront.net/spark-{{ SPARK_VERSION }}-bin-hadoop2.7.tgz"
 SPARK_HOME: /opt/spark
 SPARK_MASTER_WEBUI_PORT: 8080
-SPARK_MASTER_HOST: '{{ groups["masters"] | list | join(" ") }}'
+#SPARK_MASTER_HOST: '{{ groups["masters"] | list | join(" ") }}'
+SPARK_MASTER_EXTERNAL_IP: '{{ groups["masters"] | list | join(" ") }}'
+SPARK_MASTER_HOST: "{{ hostvars[SPARK_MASTER_EXTERNAL_IP].ansible_default_ipv4['address'] }}"
 SPARK_MASTER_PORT: 7077
 SPARK_MASTER_OPTS: 
 
