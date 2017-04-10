@@ -1,5 +1,5 @@
 ---
-- name: create group
+- name: create user which will run spark
   user:
     name: "{{ SPARK_USER }}"
     state: present

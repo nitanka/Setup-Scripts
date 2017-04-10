@@ -1,11 +1,4 @@
 ---
-- name: copying slaves template
-  template:
-    src: slaves.j2
-    dest: "{{ SPARK_HOME }}/conf/slaves"
-    owner: "{{ SPARK_USER }}"
-    group: "{{ SPARK_GROUP }}"
-
 - name: copying spark-env.sh template
   template:
     src: spark-env.sh.j2 
@@ -21,5 +14,6 @@
     mode: 0755
     owner: "{{ SPARK_USER }}"
     group: "{{ SPARK_GROUP }}"
-  when: ( SPARK_LOG_DIR is defined ) and ( SPARK_LOG_DIR|default(None) != None )
+  when: ( SPARK_LOG_DIR is defined ) and ( SPARK_LOG_DIR|default(None) != None ) #Creates the directory only when the spark log directory is not
+                                                                                 #the default directory
 

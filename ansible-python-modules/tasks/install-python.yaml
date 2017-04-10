@@ -31,12 +31,12 @@
   when: python_status.rc != 0
 
 - name: Building Python from source
-  command: make altinstall
+  command: make altinstall  #altinstall so that python2.7 is not overridden by the installation
   args:
     chdir: "{{ PYTHON_SOURCE_LOCATION }}/Python-{{ PYTHON_VERSION }}"
   when: python_status.rc != 0
 
-- name: Clening up the tarball
+- name: Cleaning up the tarball
   file:
     path: "/tmp/Python-{{ PYTHON_VERSION }}.tgz"
     state: absent

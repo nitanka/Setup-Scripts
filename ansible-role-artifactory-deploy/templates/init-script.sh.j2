@@ -1,0 +1,81 @@
+!/bin/sh
+#purpose: by this script we can able start,stop, restart the particular jar file and also can view the status of jar 
+#usage: copy this script to /etc/init.d/ location
+#####################################
+#for ubuntu
+#Command : sudo update-rc.d script_name defaults
+
+####################################33
+#for redhat
+#    -  chkconfig --add bigbrain 
+#    -  chkconfig --level 2345 bigbrain on
+#    -  chkconfig --list 
+#we can give any name for service
+
+SERVICE_NAME="{{ SERVICE_NAME }}"
+#this is the path to a jar file
+PATH_TO_JAR= "{{ ARTIFACT_DEST }}"
+#path to pid file.only need to give the file name.it'll automatically create.it consist pid of running jar.
+PID_PATH_NAME="{{ PID_PATH }}"
+case $1 in
+    start)
+        echo "Starting $SERVICE_NAME ..."
+        if [ ! -f $PID_PATH_NAME ]; then
+            nohup java -Xms6000m -Xmx7000m -jar $PATH_TO_JAR 2> /dev/null 1> /dev/null &
+            echo $! > $PID_PATH_NAME
+	    PID=$(cat $PID_PATH_NAME);
+	    sleep 80;
+            if [ $(ps -ef | grep $PID | grep -v grep | wc -l) -ge 1 ];then
+	            echo "$SERVICE_NAME started ..."
+	    else
+		    echo "$SERVICE_NAME couldnot be started..."
+		    sudo rm $PID_PATH_NAME
+	    fi
+        else
+            echo "$SERVICE_NAME is already running ..."
+        fi
+    ;;
+    stop)
+        if [ -f $PID_PATH_NAME ]; then
+            PID=$(cat $PID_PATH_NAME);
+            echo "$SERVICE_NAME stoping ..."
+            sudo kill $PID;
+            echo "$SERVICE_NAME stopped ..."
+            sudo rm $PID_PATH_NAME
+        else
+            echo "$SERVICE_NAME is not running ..."
+        fi
+    ;;
+    restart)
+        if [ -f $PID_PATH_NAME ]; then
+            PID=$(cat $PID_PATH_NAME);
+            echo "$SERVICE_NAME stopping ...";
+            sudo kill $PID;
+            echo "$SERVICE_NAME stopped ...";
+            sudo rm $PID_PATH_NAME
+            echo "$SERVICE_NAME starting ..."
+            nohup java -jar $PATH_TO_JAR 2>> /dev/null 1>> /dev/null &
+            echo $! > $PID_PATH_NAME
+            
+	    PID=$(cat $PID_PATH_NAME);
+            if [ $(ps -ef | grep $PID | grep -v grep | wc -l) -ge 1 ];then
+                    echo "$SERVICE_NAME started ..."
+            else
+                    echo "$SERVICE_NAME couldnot be started..."
+                    rm $PID_PATH_NAME
+            fi
+
+        else
+            echo "$SERVICE_NAME is not running ..."
+        fi
+    ;;
+    status)
+	if [ -f $PID_PATH_NAME ]; then
+	   PID=$(cat $PID_PATH_NAME);
+	   echo 123
+        else
+           echo 127
+        fi
+     ;;
+esac
+

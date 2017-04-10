@@ -1,0 +1,14 @@
+---
+- name: Check if the deployment path already exists
+  stat:
+    path: "{{ ARTIFACT_DEST }}"
+  register: pathStatus
+
+- name: Create the directory if not exists
+  file:
+    path: "{{ ARTIFACT_DEST }}"
+    owner: "{{ ARTIFACT_USER }}"
+    group: "{{ ARTIFACT_USER }}"
+    state: directory
+  when: pathStatus.stat.exists == false
+

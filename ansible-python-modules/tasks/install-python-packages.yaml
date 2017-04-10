@@ -10,13 +10,13 @@
   apt:
     name: libcupti-dev
     state: latest
-  when: GPU_ENABLED
+  when: GPU_ENABLED #when the machine is GPU enabled (cuda compatible)
 
 - name: Install Tensorflow GPU
   command: "python{{ PYTHON_BINARY }} -m pip install --upgrade {{ GPU_PACKAGE }}"
-  when: GPU_ENABLED
+  when: GPU_ENABLED #When the machine is GPU enabled
 
 - name: Install Tensorflow CPU
   command: "python{{ PYTHON_BINARY }} -m pip install --upgrade {{ CPU_PACKAGE }}"
-  when: not GPU_ENABLED
+  when: not GPU_ENABLED #When the machine is not CPU enabled 
  

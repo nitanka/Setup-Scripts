@@ -1,0 +1,8 @@
+---
+- name: Copy the artifact to the location
+  copy: 
+    src: "{{ ARTIFACT_SRC }}"
+    dest: "{{ ARTIFACT_DEST }}"
+    owner: "{{ ARTIFACT_USER }}"
+    group: "{{ ARTIFACT_USER }}"
+    mode: 0700

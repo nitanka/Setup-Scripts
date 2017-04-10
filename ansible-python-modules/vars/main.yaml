@@ -1,5 +1,7 @@
 ---
-GPU_ENABLED: false
+GPU_ENABLED: false #Set it to true, if the target systems are having GPU support
+
+#Dependencies to build python
 PYTHON_DEPENDENCIES: 
   - build-essential
   - checkinstall
@@ -10,15 +12,17 @@ PYTHON_DEPENDENCIES:
   - libgdbm-dev 
   - libc6-dev 
   - libbz2-dev
-  - https://storage.googleapis.com/tensorflow/linux/cpu/protobuf-3.1.0-cp27-none-linux_x86_64.whl
+
+
 
 CPU_PACKAGE: 'https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.0.1-cp35-cp35m-linux_x86_64.whl'
 GPU_PACKAGE: 'https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.0.1-cp35-cp35m-linux_x86_64.whl'
 PYTHON_VERSION: 3.5.2
 PYTHON_BINARY: 3.5
 PYTHON_URL: https://www.python.org/ftp/python
-PYTHON_SOURCE_LOCATION: /usr/src
+PYTHON_SOURCE_LOCATION: /usr/src #Change the value to change the locatioin of python source
 
+#Python packages for DL team
 PYTHON_PACKAGES:
   - numpy
   - scipy
@@ -26,6 +30,7 @@ PYTHON_PACKAGES:
   - sklearn
   - jsonpickle
   - nose 
+  - https://storage.googleapis.com/tensorflow/linux/cpu/protobuf-3.1.0-cp27-none-linux_x86_64.whl
 
 
 

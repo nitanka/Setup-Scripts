@@ -1,4 +1,11 @@
 --- 
+#This playbook will perform the following
+# Create docker group
+# Install the docker dependencies
+# Add docker gpg key and keyserver
+# Install docker
+# Add a user to the docker group which will run the docker commands
+
 - name: create docker group
   group:
     name: docker
@@ -6,12 +13,12 @@
 
 - name: installing docker dependencies
   apt:
-    name: "{{ item }}"
+    name: "{{ item }}" 
     state: present
     update_cache: yes
-  with_items: "{{ DOCKER_DEPENDENCIES }}"
+  with_items: "{{ DOCKER_DEPENDENCIES }}" #defined in vars/main.yaml
 
-- name: adding the docker key
+- name: adding the docker key #add the gpg key for the docker keyserver
   apt_key:
     id: "{{ DOCKER_GPG_KEY }}" 
     keyserver: "{{ DOCKER_KEYSERVER }}"
@@ -30,7 +37,7 @@
 
 - name: checking if the user present
   getent: 
-    key: "{{ DOCKER_USER }}"
+    key: "{{ DOCKER_USER }}" 
     database: passwd
     split: ':'
     fail_key: false
@@ -39,4 +46,7 @@
   user: 
      name: "{{ DOCKER_USER }}"
      group: docker
-     append: yes 
+     append: yes
+
+- name: start docker service
+  notify: restart docker 

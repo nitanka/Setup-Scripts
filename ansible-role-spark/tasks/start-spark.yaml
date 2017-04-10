@@ -13,7 +13,7 @@
 
 - name: Stop spark slave
   command: "{{ SPARK_HOME }}/sbin/stop-slave.sh"
-  when: inventory_hostname in groups['slaves']
+  when: inventory_hostname in groups['slaves'] 
   become: true
   become_user: "{{ SPARK_USER }}"
 
