@@ -2,7 +2,7 @@
 - name: Testing if python3.5 is already installed
   command: python3.5 --version
   register: python_status
-
+  ignore_error: true
 
 - name: Download python3.5 source
   get_url:
