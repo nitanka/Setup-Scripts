@@ -1,6 +1,0 @@
----
-ARTIFACT_SRC: /tmp
-ARTIFACT_DEST: /opt/apps
-ARTIFACTS_USER: bigbrain
-LOG_LOCATION: /opt/logs
-INIT_LOCATION: /etc/init.d	

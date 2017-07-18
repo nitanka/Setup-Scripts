@@ -1,6 +1,0 @@
----
-- include: create-user.yaml
-- include: download.yaml
-- include: configure.yaml
-- include: start-spark.yaml 
-- include: clean-up.yaml
